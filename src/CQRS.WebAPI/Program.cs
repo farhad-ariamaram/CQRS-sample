@@ -1,4 +1,8 @@
 using CQRS.Application.Books.Commands;
+using CQRS.Application.Books.Interfaces;
+using CQRS.Infrastructure.Persistence;
+using CQRS.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddMediatR(cfg => {
     cfg.RegisterServicesFromAssembly(typeof(AddBookCommandHandler).Assembly);
 });
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("CQRS"));
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 
