@@ -26,6 +26,6 @@ public class Book
         if(string.IsNullOrWhiteSpace(newTitle))
             throw new ArgumentException("Title cannot be empty");
 
-        Title = title;
+        Title = newTitle;
     }
 }
