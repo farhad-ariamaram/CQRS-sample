@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using CQRS.Application.Books.Commands;
+using CQRS.Application.Books.Queries;
 using MediatR;
 
 namespace MyApp.Namespace
@@ -20,6 +21,13 @@ namespace MyApp.Namespace
         {
             var id = await _mediator.Send(command);
             return Ok(new {BookId = id});
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _mediator.Send(new GetAllBooksQuery());
+            return Ok(result);
         }
     }
 }
