@@ -7,4 +7,6 @@ public interface IBookRepository
 {
     Task<Guid> AddAsync(Book book, CancellationToken cancellationToken);
     Task<List<BookDto>> GetAllAsync(CancellationToken cancellationToken);
+    Task UpdateAsync(Book book, CancellationToken cancellationToken);
+    Task<Book?> GetByIdAsync(Guid id, CancellationToken cancellationToken); 
 }

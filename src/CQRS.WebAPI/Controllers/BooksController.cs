@@ -29,5 +29,14 @@ namespace MyApp.Namespace
             var result = await _mediator.Send(new GetAllBooksQuery());
             return Ok(result);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateBookCommand command)
+        {
+            if(id != command.Id) return BadRequest("id in request and command does not match");
+            var result = await _mediator.Send(command);
+            if(!result) return NotFound();
+            return NoContent();
+        }
     }
 }

@@ -28,4 +28,10 @@ public class Book
 
         Title = newTitle;
     }
+
+    public void Update(string title, string author)
+    {
+        Title = title;
+        Author = author;
+    }
 }

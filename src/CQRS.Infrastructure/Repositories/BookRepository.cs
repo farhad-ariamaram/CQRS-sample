@@ -31,4 +31,15 @@ public class BookRepository : IBookRepository
                 Author = a.Author
             }).ToListAsync(cancellationToken);
     }
+
+    public async Task UpdateAsync(Book book, CancellationToken cancellationToken)
+    {
+        _context.Books.Update(book);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<Book?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        return await _context.Books.FirstOrDefaultAsync(a=>a.Id == id, cancellationToken);
+    }
 }
