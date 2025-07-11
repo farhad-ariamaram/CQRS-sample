@@ -9,4 +9,5 @@ public interface IBookRepository
     Task<List<BookDto>> GetAllAsync(CancellationToken cancellationToken);
     Task UpdateAsync(Book book, CancellationToken cancellationToken);
     Task<Book?> GetByIdAsync(Guid id, CancellationToken cancellationToken); 
+    Task DeleteAsync(Book book, CancellationToken cancellationToken);
 }

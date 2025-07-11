@@ -38,5 +38,14 @@ namespace MyApp.Namespace
             if(!result) return NotFound();
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id, [FromBody] DeleteBookCommand command)
+        {
+            if(id != command.Id) return BadRequest("id in request and command does not match");
+            var result = await _mediator.Send(command);
+            if(!result) return NotFound();
+            return NoContent();
+        }
     }
 }

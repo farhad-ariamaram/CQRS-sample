@@ -42,4 +42,10 @@ public class BookRepository : IBookRepository
     {
         return await _context.Books.FirstOrDefaultAsync(a=>a.Id == id, cancellationToken);
     }
+
+    public async Task DeleteAsync(Book book, CancellationToken cancellationToken)
+    {
+        _context.Books.Remove(book);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
 }
